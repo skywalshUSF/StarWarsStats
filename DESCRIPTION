@@ -1,11 +1,16 @@
 Package: StarWarsStats
-Title: What the Package Does (One Line, Title Case)
+Title: Explore and Analyze Star Wars Character Data
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Skylar", "Walsh", , "skylarwalsh@usf.edu", role = c("aut", "cre"))
+Description: The goal of this R Package is to provide a set of utility functions to easily load, filter, validate, and analyze data from the 'dplyr::starwars' data set, focusing on character attributes, names, heights, genders, and associated starships. The package offers robust, well documented examples of R programming techniques, including, 'dplyr' wrangling, input validation, and error handling within a fun, accessible domain. It was created as an educational exercise to demonstrate practical R function writing and documentation standards, and is primarily intended for students learning R programming who want hands on examples of data manipulation and building reuseable functions within validation checks. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Imports:
+    dplyr,
+    rlang
+Depends: 
+    R (>= 3.5)
+LazyData: true
