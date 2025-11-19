@@ -21,8 +21,8 @@ and groups the results by their homeworld. Includes input validation.
 \details{
 This function is useful for identifying the tallest individuals and analyzing
 their distribution across different planets. The resulting data frame includes
-all 14 columns from the original \code{starwars} dataset, but is grouped by
-\code{homeworld} and then sorted by height in descending order within each group.
+all 14 columns from the original 'starwars' dataset, but is grouped by
+'homeworld' and then sorted by height in descending order within each group.
 }
 \examples{
 
