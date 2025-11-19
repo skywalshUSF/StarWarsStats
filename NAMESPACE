@@ -2,4 +2,5 @@
 
 export(char_by_sex)
 export(char_height_by_planet)
+export(chars_born_before)
 import(dplyr)
