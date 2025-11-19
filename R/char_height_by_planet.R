@@ -11,7 +11,6 @@
 #'  'homeworld', arranged by homeworld and descending height.
 #'
 #' @import dplyr
-#' @importFrom rlang .data
 #'
 #' @export
 #'
@@ -36,13 +35,13 @@ char_height_by_planet <- function(min_height) {
 
   # Filter the data based on the user-provided height threshold
   filtered_data <- starwars_data %>%
-    dplyr::filter(.data$height >= min_height)
+    dplyr::filter(height >= min_height)
 
   # Group the filtered data by homeworld (planet) and select relevant columns
   characters_by_planet <- filtered_data %>%
-    dplyr::group_by(.data$homeworld) %>%
-    dplyr::select(.data$name, .data$height, .data$homeworld) %>%
-    dplyr::arrange(.data$homeworld, desc(.data$height))
+    dplyr::group_by(homeworld) %>%
+    dplyr::select(name, height, homeworld) %>%
+    dplyr::arrange(homeworld, desc(height))
 
   # Return the data table with names and heights
   return(characters_by_planet)

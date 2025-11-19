@@ -2,4 +2,3 @@
 
 export(char_height_by_planet)
 import(dplyr)
-importFrom(rlang,.data)

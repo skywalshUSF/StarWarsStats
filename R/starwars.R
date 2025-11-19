@@ -2,7 +2,7 @@
 #'
 #' A dataset containing the characteristics of 87 Star Wars characters.
 #'
-#' @format A data frame with 87 rows and 13 variables:
+#' @format A data frame with 87 rows and 14 variables:
 #' \describe{
 #'   \item{name}{Character name.}
 #'   \item{height}{Height (cm).}

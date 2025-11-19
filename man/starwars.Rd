@@ -5,7 +5,7 @@
 \alias{starwars}
 \title{Star Wars Characters}
 \format{
-A data frame with 87 rows and 13 variables:
+A data frame with 87 rows and 14 variables:
 \describe{
 \item{name}{Character name.}
 \item{height}{Height (cm).}
