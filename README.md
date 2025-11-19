@@ -59,7 +59,7 @@ After installation is complete, you can load the package and start using
 your functions:
 
 ``` r
-# library(swstats)
+library(StarWarsStats)
 ```
 
 ## Data
@@ -86,10 +86,48 @@ it occurred After the Battle of Yavin (ABY).
 # summary(starwars)
 ```
 
-## Examples
+## Examples of Functions
 
-This is a basic example which shows you how to solve a common problem:
+### char_height_by_planet()
+
+Filter Characters Taller Than a Minimum Height by Planet
+
+Subsets the Star Wars characters who meet or exceed a specified minimum
+height and groups the results by their homeworld.
+
+This function is useful for identifying the tallest individuals and
+analyzing their distribution across different planets. The resulting
+data frame includes the name, height, and homeworld columns from the
+dataset, but is grouped by homeworld and then sorted by height in
+descending order within each group.
 
 ``` r
-## basic example code
+# Find all characters who are 200 cm (6'7") or taller
+char_height_by_planet(min_height = 200)
+#> # A tibble: 11 × 3
+#> # Groups:   homeworld [8]
+#>    name         height homeworld
+#>    <chr>         <int> <chr>    
+#>  1 Grievous        216 Kalee    
+#>  2 Lama Su         229 Kamino   
+#>  3 Taun We         213 Kamino   
+#>  4 Tarfful         234 Kashyyyk 
+#>  5 Chewbacca       228 Kashyyyk 
+#>  6 Roos Tarpals    224 Naboo    
+#>  7 Rugor Nass      206 Naboo    
+#>  8 Yarael Poof     264 Quermia  
+#>  9 Darth Vader     202 Tatooine 
+#> 10 Tion Medon      206 Utapau   
+#> 11 IG-88           200 <NA>
+
+# Find the giants of the galaxy (e.g., taller than 225 cm)
+char_height_by_planet(min_height = 225)
+#> # A tibble: 4 × 3
+#> # Groups:   homeworld [3]
+#>   name        height homeworld
+#>   <chr>        <int> <chr>    
+#> 1 Lama Su        229 Kamino   
+#> 2 Tarfful        234 Kashyyyk 
+#> 3 Chewbacca      228 Kashyyyk 
+#> 4 Yarael Poof    264 Quermia
 ```

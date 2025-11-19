@@ -1,10 +1,14 @@
-#' Return a tibble of Star Wars characters' names and heights, grouped by planet
+#' Filter Characters Taller Than a Minimum Height by Planet
 #'
-#' Filters the built-in 'starwars' data set to include only characters above a
-#' specified height threshold, then returns their name, height, and homeworld
-#'  (planet), grouped by planet. Includes input validation.
+#' Subsets the Star Wars characters who meet or exceed a specified minimum height
+#' and groups the results by their homeworld. Includes input validation.
 #'
-#' @param min_height A numeric value (integer) representing the minimum height
+#' @details This function is useful for identifying the tallest individuals and analyzing
+#' their distribution across different planets. The resulting data frame includes
+#' all 14 columns from the original \code{starwars} dataset, but is grouped by
+#' \code{homeworld} and then sorted by height in descending order within each group.
+#'
+#' @param min_height A positive numeric value representing the minimum height
 #'  (in centimeters) for characters to be included in the output.
 #'
 #' @returns A grouped tibble (data frame) with columns 'name', 'height', and
@@ -16,33 +20,45 @@
 #'
 #' @examples
 #'
-#' # Requires the 'dplyr' package to run the function definition
-#' if(requireNamespace("dplyr",quietly=TRUE)){
-#'   char_height_by_planet(min_height=180)
-#'   char_height_by_planet(100)
-#' }
+#' # Find all characters who are 200 cm (6'7") or taller
+#' char_height_by_planet(min_height = 200)
+#'
+#' # Find the giants of the galaxy (e.g., taller than 225 cm)
+#' char_height_by_planet(min_height = 225)
 #'
 char_height_by_planet <- function(min_height) {
 
   # Input validation:
   # Check if the input is valid (a positive numeric value)
   if (!is.numeric(min_height) || min_height <= 0) {
-    stop("Please enter a valid positive numeric value for minimum height.")
+    # If the user provides bad input, we stop with a clear message.
+    stop("Please enter a valid positive numeric value for minimum height.", call. = FALSE)
   }
 
-  # Load data
-  starwars_data <- dplyr::starwars
+  # Dependency check (using tryCatch for robustness)
+  filtered_results <- tryCatch({
 
-  # Filter the data based on the user-provided height threshold
-  filtered_data <- starwars_data %>%
-    dplyr::filter(height >= min_height)
+    # Load data
+    starwars_data <- dplyr::starwars
 
-  # Group the filtered data by homeworld (planet) and select relevant columns
-  characters_by_planet <- filtered_data %>%
-    dplyr::group_by(homeworld) %>%
-    dplyr::select(name, height, homeworld) %>%
-    dplyr::arrange(homeworld, desc(height))
+    # Filter the data based on the user-provided height threshold
+    filtered_data <- starwars_data %>%
+      dplyr::filter(height >= min_height)
 
-  # Return the data table with names and heights
-  return(characters_by_planet)
+    # Group the filtered data by homeworld (planet)
+    characters_by_planet <- filtered_data %>%
+      dplyr::group_by(homeworld) %>%
+      dplyr::select(name,height,homeworld) %>%
+      dplyr::arrange(homeworld, desc(height))
+
+    # Return the data table with all columns
+    return(characters_by_planet)
+
+  }, error = function(e) {
+    # Handle the dependency error
+    stop(
+      "Function failed: Ensure the 'dplyr' package is installed and accessible.",
+      call. = FALSE
+    )
+  })
 }

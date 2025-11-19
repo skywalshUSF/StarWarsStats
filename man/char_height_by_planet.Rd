@@ -2,12 +2,12 @@
 % Please edit documentation in R/char_height_by_planet.R
 \name{char_height_by_planet}
 \alias{char_height_by_planet}
-\title{Return a tibble of Star Wars characters' names and heights, grouped by planet}
+\title{Filter Characters Taller Than a Minimum Height by Planet}
 \usage{
 char_height_by_planet(min_height)
 }
 \arguments{
-\item{min_height}{A numeric value (integer) representing the minimum height
+\item{min_height}{A positive numeric value representing the minimum height
 (in centimeters) for characters to be included in the output.}
 }
 \value{
@@ -15,16 +15,21 @@ A grouped tibble (data frame) with columns 'name', 'height', and
 'homeworld', arranged by homeworld and descending height.
 }
 \description{
-Filters the built-in 'starwars' data set to include only characters above a
-specified height threshold, then returns their name, height, and homeworld
-(planet), grouped by planet. Includes input validation.
+Subsets the Star Wars characters who meet or exceed a specified minimum height
+and groups the results by their homeworld. Includes input validation.
+}
+\details{
+This function is useful for identifying the tallest individuals and analyzing
+their distribution across different planets. The resulting data frame includes
+all 14 columns from the original \code{starwars} dataset, but is grouped by
+\code{homeworld} and then sorted by height in descending order within each group.
 }
 \examples{
 
-# Requires the 'dplyr' package to run the function definition
-if(requireNamespace("dplyr",quietly=TRUE)){
-  char_height_by_planet(min_height=180)
-  char_height_by_planet(100)
-}
+# Find all characters who are 200 cm (6'7") or taller
+char_height_by_planet(min_height = 200)
+
+# Find the giants of the galaxy (e.g., taller than 225 cm)
+char_height_by_planet(min_height = 225)
 
 }

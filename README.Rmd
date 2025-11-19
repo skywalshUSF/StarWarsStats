@@ -55,7 +55,7 @@ Once the remotes package is installed, use the install_github() function:
 After installation is complete, you can load the package and start using your functions:
 
 ```{r}
-# library(swstats)
+library(StarWarsStats)
 ```
 
 ## Data
@@ -76,11 +76,26 @@ Key Detail (Birth Year): Note that birth years are measured relative to the Batt
 ```
 
 
-## Examples
+## Examples of Functions
 
-This is a basic example which shows you how to solve a common problem:
+### char_height_by_planet()
+
+Filter Characters Taller Than a Minimum Height by Planet
+
+Subsets the Star Wars characters who meet or exceed a specified minimum height 
+and groups the results by their homeworld.
+
+This function is useful for identifying the tallest individuals and analyzing 
+their distribution across different planets. The resulting data frame includes 
+the name, height, and homeworld columns from the dataset, but is grouped by 
+homeworld and then sorted by height in descending order within each group.
 
 ```{r example}
-## basic example code
+# Find all characters who are 200 cm (6'7") or taller
+char_height_by_planet(min_height = 200)
+
+# Find the giants of the galaxy (e.g., taller than 225 cm)
+char_height_by_planet(min_height = 225)
+
 ```
 
