@@ -7,45 +7,89 @@
 
 <!-- badges: end -->
 
-The goal of StarWarsStats is to …
+The goal of this R Package is to provide a set of utility functions to
+easily load, filter, validate, and analyze data from the
+‘dplyr::starwars’ data set, focusing on character attributes, names,
+heights, genders, and associated starships. The package offers robust,
+well documented examples of R programming techniques, including, ‘dplyr’
+wrangling, input validation, and error handling within a fun, accessible
+domain. It was created as an educational exercise to demonstrate
+practical R function writing and documentation standards, and is
+primarily intended for students learning R programming who want hands on
+examples of data manipulation and building reuseable functions within
+validation checks.
 
 ## Installation
 
-You can install the development version of StarWarsStats from
-[GitHub](https://github.com/) with:
+Since this package is not yet on CRAN, you can install the development
+version directly from
+[GitHub](https://github.com/skywalshUSF/StarWarsStats) using the
+‘remotes’ package.
+
+### Prerequisites
+
+You must have the following packages installed:
+
+remotes: To install packages directly from GitHub.
+
+dplyr: This package contains the ‘starwars’ dataset and the functions
+the package relies on.
+
+You can install these prerequisites by running the following command in
+your R console:
 
 ``` r
-# install.packages("pak")
+# install.packages(c("remotes", "dplyr"))
 ```
 
-## Example
+### Install the ‘StarWarsStats’ Package
+
+Once the remotes package is installed, use the install_github()
+function:
+
+``` r
+# Install 'StarWarsStats' package
+
+# remotes::install_github("skywalshUSF/StarWarsStats")
+```
+
+### Load the Package
+
+After installation is complete, you can load the package and start using
+your functions:
+
+``` r
+# library(swstats)
+```
+
+## Data
+
+The ‘StarWarsStats’ package uses the widely available ‘starwars’ dataset
+provided by the ‘dplyr’ package.
+
+Source: The data is a curated selection from the Star Wars API (SWAPI),
+packaged for use in R.
+
+Content: It contains 87 characters across 14 variables, covering
+biographical, physical, and historical information (e.g., name, height,
+species, and films appeared in).
+
+Key Detail (Birth Year): Note that birth years are measured relative to
+the Battle of Yavin (BBY). A positive number (e.g., 41.9) means the
+event occurred Before the Battle of Yavin, and a negative number means
+it occurred After the Battle of Yavin (ABY).
+
+``` r
+# To see a full description of all 14 variables in the dataset, run the following command in your R console:
+
+# ?starwars
+# summary(starwars)
+```
+
+## Examples
 
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
 ## basic example code
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
