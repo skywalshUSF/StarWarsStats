@@ -50,7 +50,7 @@ function:
 ``` r
 # Install 'StarWarsStats' package
 
-# remotes::install_github("skywalshUSF/StarWarsStats")
+# remotes::install_github("skywalshUSF/StarWarsStats", build_vignettes = TRUE)
 ```
 
 ### Load the Package
