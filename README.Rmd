@@ -90,7 +90,7 @@ their distribution across different planets. The resulting data frame includes
 the name, height, and homeworld columns from the dataset, but is grouped by 
 homeworld and then sorted by height in descending order within each group.
 
-```{r example}
+```{r example1}
 # Find all characters who are 200 cm (6'7") or taller
 char_height_by_planet(min_height = 200)
 
@@ -99,3 +99,94 @@ char_height_by_planet(min_height = 225)
 
 ```
 
+### char_by_sex()
+
+Filter Characters by Sex (Male or Female)
+
+Subsets the Star Wars characters based on a user-specified sex input ('M' or 'F').
+
+This function validates the input, converts 'M' to "male" and 'F' to "female"
+to match the values in the 'starwars' dataset, and then filters the data.
+The function returns a focused table including the character's name, sex, and homeworld,
+grouped by sex and sorted alphabetically by name.
+
+```{r example2}
+# Find all female characters
+char_by_sex(sex_input = "F")
+
+# Find all male characters (case-insensitive check)
+char_by_sex(sex_input = "m")
+
+```
+
+### chars_born_before()
+
+Filter Characters Born Before a BBY Threshold
+
+Returns a subset of Star Wars characters who were born earlier
+than (or "before") a specified year threshold (BBY).
+
+This function is designed for chronological analysis. In the 'starwars'
+dataset, the 'birth_year' is given in BBY (Before Battle of Yavin). Therefore,
+a higher number indicates the character was born *earlier* in the timeline.
+The function filters for characters where 'birth_year' is *greater* than
+'year_threshold_bby', effectively finding the older individuals.
+The input range is validated to be between 8 and 896.
+
+```{r example3}
+# Find characters born before 200 BBY (e.g., Yoda, Jabba)
+chars_born_before(year_threshold_bby = 200)
+
+# Find characters born before 80 BBY
+chars_born_before(year_threshold_bby = 80)
+
+```
+
+### get_starwars_data_by_name()
+
+Retrieve Star Wars Data for a Specific Character
+
+Filters the entire 'starwars' dataset to return all available
+information for a single, named character.
+
+This function is case-sensitive! You must enter the character's name
+exactly as it appears in the 'name' column of the 'starwars' dataset
+(e.g., "Luke Skywalker" works, but "luke skywalker" will cause an error).
+It provides robust error handling if the specified name is not found.
+
+```{r example4}
+# Correct way to find Luke Skywalker
+get_starwars_data_by_name("Luke Skywalker")
+
+# Example of a non-matching name (will stop execution)
+# \dontrun{
+# get_starwars_data_by_name("Darth Vader")
+# }
+
+```
+
+### get_starwars_data_by_starship()
+
+Retrieve Characters Associated with a Specific Starship
+
+Filters the 'starwars' dataset to find characters who have
+piloted a specific starship.
+
+This function is designed to search within the 'starships' list-column
+of the 'starwars' dataset. It performs a case-insensitive search, meaning
+"Millennium Falcon" and "millennium falcon" will yield the same results.
+If no matching starship is found, or if no characters are associated with it,
+the function stops with a clear error message.
+
+```{r example5}
+# Find characters who have flown the Millennium Falcon
+get_starwars_data_by_starship(starship_name = "Millennium Falcon")
+
+# Find characters associated with the X-wing (case-insensitive)
+get_starwars_data_by_starship(starship_name = "x-wing")
+
+# Example of a non-matching ship (will stop execution)
+# \dontrun{
+# get_starwars_data_by_starship("Imperial Star Destroyer")
+# }
+```
